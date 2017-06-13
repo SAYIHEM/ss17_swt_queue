@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Queue (Exam WS 2002/03) – INLOOP</title>
+  <style class="anchorjs"></style><link rel="stylesheet" type="text/css" href="Queue%20%28Exam%20WS%202002_03%29%20%E2%80%93%20INLOOP_files/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="Queue%20%28Exam%20WS%202002_03%29%20%E2%80%93%20INLOOP_files/bootstrap-theme.css">
+  <link rel="stylesheet" type="text/css" href="Queue%20%28Exam%20WS%202002_03%29%20%E2%80%93%20INLOOP_files/inloop.css">
+  
+  <link rel="stylesheet" type="text/css" href="Queue%20%28Exam%20WS%202002_03%29%20%E2%80%93%20INLOOP_files/syntax.css">
+
+</head>
+<body class="autolink">
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://inloop.inf.tu-dresden.de/">INLOOP</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        
+
+  <li><a href="https://inloop.inf.tu-dresden.de/">Home</a></li>
+  <li><a href="https://inloop.inf.tu-dresden.de/account/profile/">My Profile</a></li>
+  
+  <li><a id="logout-link" href="https://inloop.inf.tu-dresden.de/logout/">Logout</a></li>
+
+
+      </ul>
+    </div>
+    
+
+<form id="logout-form" method="post" action="/logout/">
+  <input name="csrfmiddlewaretoken" value="LShQkN700ZVneFhJTPUL18ffr3lHTGdvj1EtYslJbSCnHYQsWT8cu5GAwli3j5UL" type="hidden">
+</form>
+<script src="Queue%20%28Exam%20WS%202002_03%29%20%E2%80%93%20INLOOP_files/logout.js"></script>
+
+
+  </div>
+</nav>
+
+<div class="container">
+
+
+
+
+
+<ol class="breadcrumb">
+  <li><a href="https://inloop.inf.tu-dresden.de/tasks/">Tasks</a></li>
+  <li><a href="https://inloop.inf.tu-dresden.de/tasks/category/exam/">Exam</a></li>
+  <li class="active">Queue (Exam WS 2002/03)</li>
+</ol>
+
+<ul class="nav nav-tabs">
+  <li role="presentation" class="active">
+    <a href="https://inloop.inf.tu-dresden.de/tasks/queue/">Description</a>
+  </li>
+  <li role="presentation">
+    <a href="https://inloop.inf.tu-dresden.de/solutions/queue/upload">Manual upload</a>
+  </li>
+  <li role="presentation">
+    <a href="https://inloop.inf.tu-dresden.de/solutions/queue/">Your solutions</a>
+  </li>
+</ul>
+
+<div class="static-tab-content">
+
+<h1>Queue (Exam WS 2002/03)</h1>
+<p>Given is the following analysis model for a queue.</p>
+<p><img alt="Class diagram - analysis" src="Queue%20%28Exam%20WS%202002_03%29%20%E2%80%93%20INLOOP_files/Queue_ClassDiagram_Analysis.png"></p>
+<p>A queue (<code>Queue</code>) consists of an ordered collection of objects (generic type <code>T</code>)
+ and is based on the FIFO principle (“first in, first out”). The queue 
+returns elements in the same order they were put into it. In 
+consequence, the element which has been enqueued first will be returned 
+first.</p>
+<p>Queues usually provide the following operations:</p>
+<ul>
+<li><code>add(T t)</code> enqueues <code>t</code> as last element of the queue if possible and returns <code>true</code> if the queue has been changed, otherwise it returns <code>false</code>.</li>
+<li><code>remove()</code> removes the first element of the queue and returns that element.</li>
+<li><code>first()</code> returns the first element without removing it from the queue.</li>
+<li><code>isEmpty()</code> returns <code>true</code> if the queue is empty, otherwise it returns <code>false</code>.</li>
+<li><code>size()</code> returns the number of objects within the queue.</li>
+</ul>
+<p>In this task there are two kinds of queues (see the class diagram below):</p>
+<ol>
+<li>Queues with duplicates (<em>it is possible</em> that objects are queued up more than once at the same time, <code>withDuplicates = true</code>)</li>
+<li>Queues without duplicates (<em>it is <strong>not</strong> possible</em> that objects are queued up more than once at the same time, <code>withDuplicates = false</code>)</li>
+</ol>
+<p>Thus, for the implementation you use either</p>
+<ol>
+<li>a “common” list (use <code>java.util.LinkedList</code>) or</li>
+<li>a list without duplicate objects where the elements are ordered, i.e. an <code>OrderedSet</code>, see below.</li>
+</ol>
+<p><img alt="Class diagram - design" src="Queue%20%28Exam%20WS%202002_03%29%20%E2%80%93%20INLOOP_files/Queue_ClassDiagram_Design.png"></p>
+<h2 id="tasks">Tasks<a style="font: 1em/1 anchorjs-icons; padding-left: 0.375em;" data-anchorjs-icon="" aria-label="Anchor link for: tasks" href="#tasks" class="anchorjs-link "></a></h2>
+<p>Which design patterns are used in this design model? Think about them and their usage.</p>
+<p>Write the code for the two interfaces <code>Queue</code> and <code>OrderedSet</code> and implement them with the classes <code>QueueImpl</code> and <code>OrderedSetImpl</code>! Make the implementation typesafe by using <strong>generics</strong>! Using <code>Object</code> as element type in lists and sets is not sufficient! You may need to enhance the given domain model.</p>
+<h2 id="hints">Hints<a style="font: 1em/1 anchorjs-icons; padding-left: 0.375em;" data-anchorjs-icon="" aria-label="Anchor link for: hints" href="#hints" class="anchorjs-link "></a></h2>
+<p>To implement <code>QueueImpl</code> according to the instructions, 
+you will need an ordered set. Because there is no such data structure in
+ the Java collections framework (JCF), you have to write the interface <code>OrderedSet</code> and a concrete <code>OrderedSet</code> implementation (<code>OrderedSetImpl</code>) yourself. The interface <code>OrderedSet</code> along with the interface <code>Queue</code> is given as <a href="https://inloop.inf.tu-dresden.de/tasks/queue/attachments/Queue_javadoc.zip">Javadoc documentation</a>. The implementations of both interfaces must behave as specified in the Javadoc documentation!</p>
+<h2 id="resources">Resources<a style="font: 1em/1 anchorjs-icons; padding-left: 0.375em;" data-anchorjs-icon="" aria-label="Anchor link for: resources" href="#resources" class="anchorjs-link "></a></h2>
+<ul>
+<li><a href="https://inloop.inf.tu-dresden.de/tasks/queue/attachments/Queue_tests.zip">JUnit tests</a></li>
+<li><a href="https://inloop.inf.tu-dresden.de/tasks/queue/attachments/Queue_javadoc.zip">Javadoc documentation of the interfaces <code>Queue</code> and <code>OrderedSet</code></a></li>
+</ul>
+
+</div>
+
+
+</div>
+
+<footer class="footer">
+  <div class="container clearfix">
+    <ul class="list-inline footer-left">
+      <li class="text-muted">
+        © 2017 <a href="https://github.com/st-tu-dresden/inloop">@st-tu-dresden</a>
+      </li>
+    </ul>
+    <ul class="list-inline footer-right">
+
+      <li><a href="https://inloop.inf.tu-dresden.de/about/imprint/">Imprint</a></li>
+
+    </ul>
+  </div>
+</footer>
+
+<script src="Queue%20%28Exam%20WS%202002_03%29%20%E2%80%93%20INLOOP_files/jquery.js"></script>
+<script src="Queue%20%28Exam%20WS%202002_03%29%20%E2%80%93%20INLOOP_files/bootstrap.js"></script>
+
+<script src="Queue%20%28Exam%20WS%202002_03%29%20%E2%80%93%20INLOOP_files/prism.js"></script>
+<script src="Queue%20%28Exam%20WS%202002_03%29%20%E2%80%93%20INLOOP_files/prism-java.js"></script>
+<script src="Queue%20%28Exam%20WS%202002_03%29%20%E2%80%93%20INLOOP_files/anchor.js"></script>
+<script src="Queue%20%28Exam%20WS%202002_03%29%20%E2%80%93%20INLOOP_files/inloop.js"></script>
+
+
+
+
+</body></html>
